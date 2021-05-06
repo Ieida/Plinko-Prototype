@@ -7,10 +7,10 @@ public class PlinkoGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlinkoBall ball) && !ball.HasScored)
+        if (other.TryGetComponent(out PlinkoBall ball))
         {
             m_onScored.Invoke();
-            ball.HasScored = true;
+            Destroy(other.gameObject);
         }
     }
 }

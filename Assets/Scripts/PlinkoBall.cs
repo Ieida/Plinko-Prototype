@@ -1,16 +1,28 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlinkoBall : MonoBehaviour
 {
     [SerializeField] float m_playerForce;
-    public bool HasScored { get; set; }
+    [SerializeField] Transform m_camera;
+    [SerializeField] UnityEvent m_onBallDropped;
+
+    void Start()
+    {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+    }
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(
-            Input.GetAxisRaw("Horizontal") * m_playerForce,
-            0.0f,
-            0.0f
-        );
+        GetComponent<Rigidbody>().AddForce(m_camera.right * Input.GetAxisRaw("Horizontal"));
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            m_onBallDropped.Invoke();
+        }
     }
 }
