@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/A Plinko/Scenes/PlinkoTest.unity
+    guid: 7faa25c36ac80eb4bb3b348c79000b49
   m_configObjects: {}
